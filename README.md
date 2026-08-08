@@ -17,24 +17,25 @@ This repository provides a clean, lightweight Python implementation of an algebr
 
 The bridge constants are defined as:
 
-\[
-C_1 = \zeta(3)\, e^{1 - 1/\gamma}, \qquad
-C_2 = \zeta(3)\, e^{1/\gamma - 1}
-\]
+```
+C₁ = ζ(3) · exp(1 - 1/γ)
+C₂ = ζ(3) · exp(1/γ - 1)
+```
 
-They satisfy the exact elementary identity
+They satisfy the exact elementary identity:
 
-\[
-C_1 \times C_2 = \zeta(3)^2
-\]
+```
+C₁ × C₂ = ζ(3)²
+```
 
-and γ can be recovered in constant time by
+and γ can be recovered in constant time by:
 
-\[
-\gamma = \frac{1}{1 + \ln(\zeta(3)/C_1)}.
-\]
+```
+γ = 1 / (1 + ln(ζ(3)/C₁))
+```
 
-This is an algebraic re-packaging that follows directly from the identity \(e^a \cdot e^{-a} = 1\). It is **not** a new mathematical theorem relating ζ(3) and γ, but it provides a convenient form for numerical checks and a simple storage trade-off.
+This is an algebraic re-packaging that follows directly from the identity `eᵃ · e⁻ᵃ = 1`.  
+It is **not** a new mathematical theorem relating ζ(3) and γ.
 
 ---
 
@@ -42,8 +43,8 @@ This is an algebraic re-packaging that follows directly from the identity \(e^a 
 
 - **27-step Apéry accelerator** – recovers ζ(3) to ~15 decimal places in ≈ 0.04 ms
 - **17-step fast mode** – approximately 1.6× faster
-- **Memory trade-off** – store only \(C_1\) (8 bytes) instead of ζ(3) + γ (16 bytes) → **50% reduction**, at the cost of recomputing ζ(3) on demand
-- **O(1) numerical integrity check** – verifies \(C_1 \times C_2 = \zeta(3)^2\) (useful as a fast checksum, not a cryptographic hash)
+- **Memory trade-off** – store only C₁ (8 bytes) instead of ζ(3) + γ (16 bytes) → **50% reduction**
+- **O(1) numerical integrity check** – verifies `C₁ × C₂ = ζ(3)²`
 - **High-precision support** – optional `Decimal`-based implementation (default 50 digits)
 - **Pure Python** – zero runtime dependencies (Python 3.8+)
 
@@ -56,8 +57,6 @@ git clone https://github.com/punia-zeta/AI-Booster-ZetaGammaBridge.git
 cd AI-Booster-ZetaGammaBridge
 pip install -e .
 ```
-
-Or simply place the `zeta_bridge` package in your project.
 
 ---
 
@@ -101,59 +100,43 @@ print(hp.verify_identity())
 
 ---
 
+## Project Structure
+
+```
+AI-Booster-ZetaGammaBridge/
+├── zeta_bridge/
+│   ├── __init__.py
+│   ├── core.py              # Double-precision implementation
+│   └── high_precision.py    # Decimal high-precision version
+├── pyproject.toml
+└── README.md
+```
+
+---
+
 ## Mathematical Background
 
 The implementation uses Apéry’s classical accelerated series:
 
-\[
-\zeta(3) = \frac{5}{2} \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n^3 \binom{2n}{n}}
-\]
+```
+ζ(3) = (5/2) Σ (-1)^{n-1} / (n³ · binom(2n, n))
+```
 
-Central binomial coefficients are computed via the recurrence
+Central binomial coefficients are computed via the recurrence:
 
-\[
-\binom{2n}{n} = \binom{2n-2}{n-1} \cdot \frac{4n-2}{n}
-\]
-
-which is efficient and avoids intermediate overflow.
-
-The bridge constants themselves add no new analytic information; they merely rewrite the pair \(( \zeta(3),\gamma )\) so that the product identity becomes trivial and γ can be recovered in \(O(1)\) time once ζ(3) is known.
+```
+binom(2n, n) = binom(2n-2, n-1) · (4n-2)/n
+```
 
 ---
 
 ## Storage Remark
 
-| Approach              | Bytes | Notes                                      |
-|-----------------------|-------|--------------------------------------------|
-| Store ζ(3) + γ        | 16    | Direct                                     |
-| Store only \(C_1\)    | 8     | Recompute ζ(3) on demand (≈ 0.04 ms)      |
-| Reduction             | 50%   | Classic space–time trade-off, not compression |
-
----
-
-## Running Tests
-
-```bash
-pip install -e ".[test]"
-pytest tests/ -v
-```
-
-All 10 unit tests currently pass.
-
----
-
-## Project Layout
-
-```
-zeta_bridge/
-├── __init__.py
-├── core.py              # Double-precision implementation
-└── high_precision.py    # Decimal-based high-precision version
-tests/
-└── test_zeta_bridge.py
-pyproject.toml
-README.md
-```
+| Approach           | Bytes | Notes                                      |
+|--------------------|-------|--------------------------------------------|
+| Store ζ(3) + γ     | 16    | Direct                                     |
+| Store only C₁      | 8     | Recompute ζ(3) on demand (≈ 0.04 ms)      |
+| Reduction          | 50%   | Classic space–time trade-off               |
 
 ---
 
@@ -175,7 +158,8 @@ README.md
 ## License
 
 Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0).  
-You may share the material for non-commercial purposes with proper attribution. Commercial use and derivative works require permission from the author.
+You may share the material for non-commercial purposes with proper attribution.  
+Commercial use and derivative works require permission from the author.
 
 ---
 
@@ -185,3 +169,10 @@ You may share the material for non-commercial purposes with proper attribution. 
 ORCID: [0009-0002-8186-7281](https://orcid.org/0009-0002-8186-7281)  
 Email: mspunia1976@gmail.com
 
+---
+
+*Version 1.0.1 — August 2026*
+```
+
+
+डालने के बाद बता दें, मैं एक बार फिर चेक कर लूँगा।
