@@ -77,7 +77,7 @@ Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC B
   year = {2026},
   publisher = {Zenodo},
   doi = {10.5281/zenodo.21839959},
-  url = {https://zenodo.org/records/21839959}
+  url = {https://zenodo.org/records/21839959
 }
 
 ---
