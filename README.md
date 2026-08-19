@@ -63,11 +63,12 @@ Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC B
 ## Citation
 
 @software{PuniaZetaGammaBridge,
-    author = {Punia, Manoj},
-    title = {ZetaGammaBridge},
-    year = {2026},
-    doi = {10.5281/zenodo.21839959},
-    url = {https://doi.org/10.5281/zenodo.21839959}
+  author = {Punia, Manoj},
+  title = {AI Booster v1.0.0 — Core ZetaGammaBridge},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.21839959},
+  url = {https://doi.org/10.5281/zenodo.21839959}
 }
 
 ## Project Structure
